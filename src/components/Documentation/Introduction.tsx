@@ -1,49 +1,46 @@
 "use client";
+
 import Image from "next/image";
-import nextImg from "/public/images/documentation/Categories=Nextjs.svg";
-import reactImg from "/public/images/documentation/Categories=React.svg";
-import tailwindImg from "/public/images/documentation/Categories=Tailwind.svg";
-import nextauthImg from "/public/images/documentation/nextauth.png";
-import typescriptImg from "/public/images/documentation/Categories=Typescript.svg";
-import axiosImg from "/public/images/documentation/axios.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { DocNavigation } from "./DocNavigation";
 
 export const Introduction = () => {
   const [docNavbarOpen, setDocNavbarOpen] = useState(false);
+
   const PackageVersions = [
     {
       id: "1",
       packageName: "NextJs",
-      img: nextImg,
+      img: "/images/documentation/Categories=Nextjs.svg",
       version: "15.1.1",
     },
     {
       id: "2",
       packageName: "React",
-      img: reactImg,
+      img: "/images/documentation/Categories=React.svg",
       version: "19.0.0",
     },
     {
       id: "3",
       packageName: "Tailwindcss",
-      img: tailwindImg,
+      img: "/images/documentation/Categories=Tailwind.svg",
       version: "4.0.0",
     },
     {
       id: "4",
       packageName: "NextAuth",
-      img: nextauthImg,
+      img: "/images/documentation/nextauth.png",
       version: "4.24.11",
     },
     {
       id: "5",
       packageName: "Typescript",
-      img: typescriptImg,
+      img: "/images/documentation/Categories=Typescript.svg",
       version: "5.6.3",
     },
   ];
+
   return (
     <>
       <div id="version" className="md:scroll-m-[130px] scroll-m-28">
@@ -59,7 +56,6 @@ export const Introduction = () => {
             Pacakge Versions
           </h3>
           <button onClick={() => setDocNavbarOpen(true)} className="p-0">
-            {" "}
             <Icon icon="gg:menu-right" className="text-3xl lg:hidden block" />
           </button>
         </div>
@@ -74,9 +70,13 @@ export const Introduction = () => {
                 >
                   <Image
                     src={item.img}
-                    alt="npm-package"
-                    className=" mx-auto w-10 h-10 "
+                    alt={item.packageName}
+                    width={40}
+                    height={40}
+                    unoptimized
+                    className="mx-auto w-10 h-10"
                   />
+
                   <h5 className="text-2xl font-bold mt-3.5 dark:text-white">{`v${item.version}`}</h5>
                   <p className="text-base font-medium text-midnight_text dark:text-white/50">
                     {item.packageName}
@@ -85,13 +85,14 @@ export const Introduction = () => {
               );
             })}
         </div>
+
         <div className="mt-5">
           <p className="text-base font-medium text-midnight_text dark:text-white/50">
             Venus Tailwind NextJs Template is built with Tailwindcss and Nextjs.
           </p>
           <p className="text-base font-medium text-midnight_text dark:text-white/50">
-            These theme is ready to use and you can totally customize as per
-            your requirement.
+            These theme is ready to use and you can totally customize as per your
+            requirement.
           </p>
           <p className="text-base font-medium text-midnight_text dark:text-white/50">
             For Customize, You should have knowledge of NextJs, ReactJs,
@@ -100,6 +101,7 @@ export const Introduction = () => {
         </div>
       </div>
 
+      {/* Mobile Docs Menu */}
       <div
         className={`lg:hidden block fixed top-0 right-0 h-full w-full bg-white dark:bg-darklight shadow-lg transform transition-transform duration-300 max-w-xs ${
           docNavbarOpen ? "translate-x-0" : "translate-x-full"
