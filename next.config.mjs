@@ -1,45 +1,15 @@
-
 /** @type {import('next').NextConfig} */
-
-const isProd = process.env.NODE_ENV === "production";
-const basePath = isProd ? `/venus-nextjs` : "";
-
 const nextConfig = {
-  // REMOVE output: "export",  
-  
-  basePath,
-  assetPrefix: basePath,
-
   images: {
-    // remove unoptimized for server build (optional)
-    qualities: [100],
+    unoptimized: true,          // Disable sharp completely
   },
 
-  trailingSlash: false,
-
-  env: {
-    NEXT_PUBLIC_BASE_PATH: basePath,
+  experimental: {
+    optimizePackageImports: ['react', 'react-dom'],
+    serverImageLoader: "cloudflare",  // Cloudflare-compatible loader
   },
+
+  output: "export",  // Required for Cloudflare Pages
 };
 
 export default nextConfig;
-
-// /** @type {import('next').NextConfig} */
-
-// const isProd = process.env.NODE_ENV === "production";
-// const basePath = isProd ? `/venus-nextjs` : "";
-
-// const nextConfig = {
-//   output: "export",
-//   basePath,
-//   assetPrefix: basePath,
-//   images: {
-//     unoptimized: true,
-//   },
-//   trailingSlash: true,
-//   env: {
-//     NEXT_PUBLIC_BASE_PATH: basePath,
-//   },
-// };
-
-// export default nextConfig;
